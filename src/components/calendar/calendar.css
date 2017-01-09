@@ -1,0 +1,447 @@
+.header {
+  display: flex;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  margin-bottom: 3px;
+  height: 70px;
+  align-items: center;
+  background: rgb(27, 145, 173);
+  padding-right: 40px
+}
+
+.headerSpan {
+  color: #fff;
+  text-align: right;
+  width: 100%;
+  font-size: 3vw;
+  padding-right: 40px;
+}
+
+.section {
+  display: flex;
+  flex-flow: wrap;
+  font-size: 0;
+}
+
+.next, .previous {
+  cursor: pointer;
+}
+
+.time {
+  flex: 1;
+  min-width: 14.2857%;
+  max-width: 14.2857vw;
+  position: relative;
+  font-size: 1.8vw;
+  line-height: 0;
+  transition: .35s opacity;
+  box-shadow: inset 0 0 0 1px #1f1f1f;
+}
+
+.time.blank {
+  min-height: 14vw;
+}
+
+.time a {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 98.5%;
+  height: 100%;
+  position: inherit;
+  border-bottom: none;
+  outline: none;
+  text-decoration: none;
+  padding-left: 1px;
+}
+
+.caldate, .title {
+  position: absolute;
+}
+
+.caldate {
+  top: 20px;
+  left: 7px;
+  z-index: 2;
+}
+
+.blank .caldate {
+  color: #999;
+}
+
+.title {
+  width: 100%;
+  height: 100%;
+  line-height: 1.1;
+  left: 0;
+  top: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 20%;
+  opacity: 0;
+  transition: .4s opacity;
+}
+
+.time:hover {
+  background: rgb(97, 97, 97);
+  opacity: 1;
+}
+
+.time:hover .title {
+  opacity: 1;
+}
+
+.time a:hover {
+  border-bottom: none;
+}
+
+.time:not(.blank) .title, .time:not(.blank) .caldate {
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.section .img {
+  width: 100%;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.day_muted .caldate {
+    color: #333;
+}
+
+.day_selected {
+    background-color: #202021;
+}
+
+.day_today {
+  background-color: #a9ad1b;
+}
+
+.day_selected .caldate, .day_today .caldate {
+    color: #fff;
+}
+
+.button {
+  background: 0 0;
+  border: none;
+  border-radius: 2px;
+  color: #000;
+  position: relative;
+  height: 36px;
+  margin: 0;
+  min-width: 64px;
+  padding: 0 16px;
+  display: inline-block;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  overflow: hidden;
+  will-change: box-shadow;
+  transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 36px;
+  vertical-align: middle;
+}
+
+.addEventButton {
+  border-radius: 50%;
+  font-size: 24px;
+  height: 56px;
+  margin: auto;
+  min-width: 56px;
+  width: 56px;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(158,158,158,.2);
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
+  position: relative;
+  line-height: normal;
+  background: #00b3ff;
+  color: #fff;
+}
+
+.addEventButton:focus {
+  box-shadow: 0 0 8px rgba(0,0,0,.18), 0 8px 16px rgba(0,0,0,.36);
+}
+
+.eventButton {
+  position: fixed;
+  bottom: 80px;
+  right: 80px;
+}
+
+.nextButton {
+  position: relative;
+}
+
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 400;
+  min-height: 200px;
+  overflow: hidden;
+  width: 330px;
+  z-index: 5;
+  position: relative;
+  background: #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  width: 320px;
+  height: 320px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.centered {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.eventCardPanel {
+  align-items: center;
+  color: #000;
+  display: block;
+  display: flex;
+  justify-content: stretch;
+  line-height: normal;
+  padding: 16px;
+  perspective-origin: 165px 56px;
+  transform-origin: 165px 56px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  color: #fff;
+  background-color: #23e1ff;
+}
+
+.eventCardPanelText {
+  align-self: flex-end;
+  color: inherit;
+  display: block;
+  display: flex;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: normal;
+  overflow: hidden;
+  transform-origin: 149px 48px;
+  margin: 0;
+}
+
+.eventCardForm {
+  color: rgba(0,0,0,.54);
+  font-size: 1rem;
+  line-height: 18px;
+  overflow: hidden;
+  padding: 16px;
+  width: 90%;
+  background-color: #fff;
+  z-index: 2
+}
+
+.weatherPanelStatic {
+  position: static!important;
+  height: 145px!important;
+}
+
+.eventCardFormRow {
+  padding: 0 0 12px 0;
+}
+
+.eventCardFormLabel, .eventCardFormInput {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.eventCardFormLabel {
+  color: #2D2D2D;
+  font-size: 15px;
+  width: 65px;
+}
+
+.eventCardFormInput {
+  padding: 2px 5px;
+  width: 198px;
+}
+
+.eventCardFormDone {
+  border-top: 1px solid rgba(0,0,0,.1);
+  padding-top: 12px;
+  font-size: 16px;
+  line-height: normal;
+  width: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.eventCardTableDone {
+  padding: 12px;
+}
+
+.eventCardFormDoneButton {
+  color: #1b91ad;
+  border: 1px solid #1b91ad;
+}
+
+.eventMarker {
+  position: relative;
+  display: block;
+  color: #fff;
+  font-size: .65em;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 5px;
+  z-index: 3;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.eventList {
+  z-index: 5;
+}
+
+.eventList td, .eventList th {
+    color: #000;
+}
+
+.eventListTable {
+  position: relative;
+  border: 1px solid rgba(0,0,0,.12);
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 13px;
+  background-color: #fff;
+  min-width: 300px;
+}
+
+.eventListTable thead {
+  padding-bottom: 3px;
+}
+
+.eventListTable th {
+  padding: 0 18px 12px 18px;
+  text-align: right;
+}
+
+.eventTableTH {
+  position: relative;
+  vertical-align: bottom;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0;
+  height: 48px;
+  font-size: 12px;
+  color: rgba(0,0,0,.54);
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.eventTableTH:first-of-type {
+  padding-left: 24px;
+}
+
+.eventTableTHText {
+  text-align: left;
+}
+
+.eventListTable tbody tr {
+  position: relative;
+  height: 48px;
+  transition-duration: .28s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-property: background-color;
+}
+
+.eventListTable td {
+  position: relative;
+  height: 48px;
+  border-top: 1px solid rgba(0,0,0,.12);
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  padding: 12px 18px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.Meeting {
+  border: 1px solid #00bcd4;
+  background-color: #00bcd4;
+}
+
+.Task {
+  border: 1px solid #8bc34a;
+  background-color: #8bc34a;
+}
+.Appointment {
+  border: 1px solid #ff5722;
+  background-color: #ff5722;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.64);
+}
+
+.weatherPanel {
+  position: relative;
+  height: 185px;
+  background-color: #23e1ff;
+}
+
+@media all and (max-width: 950px) {
+  .time.blank {
+    /*display: none;*/
+  }
+
+  .time {
+    min-width: 20%;
+    max-height: 20vw;
+    max-width: 20vw;
+    font-size: 2vw;
+  }
+  .headerSpan {
+    font-size: 4vw;
+  }
+}
+@media all and (max-width: 750px) {
+  .time {
+    min-width: 33%;
+    max-height: 33vw;
+    font-size: 3vw;
+  }
+  .headerSpan {
+    font-size: 4vw;
+  }
+}
+@media all and (max-width: 450px) {
+  .time {
+    min-width: 50%;
+    max-height: 50vw;
+    font-size: 4vw;
+  }
+  .title {
+    font-size: 3vw;
+  }
+  .headerSpan {
+    font-size: 5vw;
+  }
+}
