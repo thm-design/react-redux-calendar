@@ -2,6 +2,7 @@
   "name": "calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/calendar",
   "devDependencies": {
     "react-scripts": "0.8.4"
   },
