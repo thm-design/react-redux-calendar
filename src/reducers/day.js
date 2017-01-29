@@ -1,4 +1,5 @@
 import moment from 'moment';
+// import Immutable from 'immutable';
 
 const initialState = {
 	selectedDay: moment(),
@@ -12,10 +13,10 @@ const addEvent = (state, action) => {
 	const eventKey = action.selectedDay.format('DD-MM-YYYY');
 
 	if (action.close) {
-		const currentEvents = result.events[eventKey];
-		currentEvents.filter((value, i) => Object.keys(value).length !== 0);
-		return result;
+		result.events[eventKey] = result.events[eventKey].filter((value, i) => Object.keys(value).length > 0);
+		return { ...state, events: result.events, eventPanelIsOpen: !state.eventPanelIsOpen};
 	}
+
 	const isOpen = !state.eventPanelIsOpen;
 	if (isOpen) {
 		const newState = { ...state, eventPanelIsOpen: !state.eventPanelIsOpen};
