@@ -1,5 +1,4 @@
 import moment from 'moment';
-// import Immutable from 'immutable';
 
 const initialState = {
 	selectedDay: moment(),
@@ -9,49 +8,48 @@ const initialState = {
 };
 
 const addEvent = (state, action) => {
-	let result = { ...state, eventPanelIsOpen: !state.eventPanelIsOpen};
 	const eventKey = action.selectedDay.format('DD-MM-YYYY');
+	const isOpen = !state.eventPanelIsOpen;
+	let newState = { ...state, eventPanelIsOpen: isOpen};
+	if(!newState.events[eventKey]) newState.events[eventKey] = [];
 
 	if (action.close) {
-		result.events[eventKey] = result.events[eventKey].filter((value, i) => Object.keys(value).length > 0);
-		return { ...state, events: result.events, eventPanelIsOpen: !state.eventPanelIsOpen};
+		newState.events[eventKey] = newState.events[eventKey].filter((value, i) => Object.keys(value).length > 0);
+		newState = { ...state, events: newState.events, eventPanelIsOpen: isOpen};
 	}
 
-	const isOpen = !state.eventPanelIsOpen;
 	if (isOpen) {
-		const newState = { ...state, eventPanelIsOpen: !state.eventPanelIsOpen};
-		newState.events[eventKey] = newState.events[eventKey] || [];
 		newState.events[eventKey].push({});
-		result = newState;
+		newState = { ...state, events: newState.events, eventPanelIsOpen: isOpen};
 	}
 
-	return result;
+	return newState;
 };
 
 const updateEventName = (state, action) => {
 	const eventKey = state.selectedDay.format('DD-MM-YYYY');
-	const newState = Object.assign({}, state);
 	const eventIndex = action.eventIndex;
-	newState.events[eventKey][eventIndex] = newState.events[eventKey][eventIndex] || {};
+	let newState = { ...state};
+	if(!newState.events[eventKey][eventIndex]) newState.events[eventKey][eventIndex] = {};
 	newState.events[eventKey][eventIndex].eventName = action.name;
-	return newState;
+	return { ...state, events: newState.events};
 };
 
 const updateEventType = (state, action) => {
 	const eventKey = state.selectedDay.format('DD-MM-YYYY');
-	const newState = Object.assign({}, state);
 	const eventIndex = action.eventIndex;
-	newState.events[eventKey][eventIndex] = newState.events[eventKey][eventIndex] || {};
+	let newState = { ...state};
+	if(!newState.events[eventKey][eventIndex]) newState.events[eventKey][eventIndex] = {};
 	newState.events[eventKey][eventIndex].eventType = action.eventType;
-	return newState;
+	return { ...state, events: newState.events};
 };
 
 const removeEvent = (state, action) => {
 	const eventKey = state.selectedDay.format('DD-MM-YYYY');
-	const newState = Object.assign({}, state);
 	const eventIndex = action.eventIndex;
+	let newState = { ...state};
 	if(eventIndex !== -1) newState.events[eventKey].splice(eventIndex, 1);
-	return newState;
+	return { ...state, events: newState.events};
 };
 
 const Day = (state = initialState, action) => {

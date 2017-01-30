@@ -1,11 +1,9 @@
 .header {
   display: flex;
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
   margin-bottom: 3px;
   height: 70px;
   align-items: center;
-  background: rgb(27, 145, 173);
+  background: rgb(199, 105, 0);
   padding-right: 40px
 }
 
@@ -25,6 +23,22 @@
 
 .next, .previous {
   cursor: pointer;
+  border: 0;
+  height: 3.4vh;
+  width: 5vw;
+  border: 1px solid white;
+  color: white;
+}
+
+.previous {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-right: 0;
+}
+
+.next {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .time {
@@ -32,7 +46,7 @@
   min-width: 14.2857%;
   max-width: 14.2857vw;
   position: relative;
-  font-size: 1.8vw;
+  font-size: 1.2vw;
   line-height: 0;
   transition: .35s opacity;
   box-shadow: inset 0 0 0 1px #1f1f1f;
@@ -426,17 +440,22 @@
   .time {
     min-width: 33%;
     max-height: 33vw;
-    font-size: 3vw;
+    font-size: 2vw;
   }
   .headerSpan {
     font-size: 4vw;
   }
 }
 @media all and (max-width: 450px) {
+
+  .next, .previous {
+    width: 14vw;
+  }
+
   .time {
     min-width: 50%;
     max-height: 50vw;
-    font-size: 4vw;
+    font-size: 3vw;
   }
   .title {
     font-size: 3vw;

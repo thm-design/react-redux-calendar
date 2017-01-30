@@ -13,25 +13,27 @@ const getTimeOfTheDay = (time) => {
   return 'day';
 };
 
+const round = (value) => Math.round(value);
 const A_WEEK_OLD = moment().clone().subtract(7, 'days').startOf('day');
 const A_WEEK_FORWARD = moment().clone().add(7, 'days').startOf('day');
 const isWithinAWeek = (momentDate) => momentDate.isAfter(A_WEEK_OLD) && momentDate.isBefore(A_WEEK_FORWARD);
 
 const Weather = ({selectedDay, weatherData}) => {
-	if (!isWithinAWeek(selectedDay)) return <div>Weather not available</div>;
-	const dayOftheWeek = selectedDay.day() - 1;
+	if (!isWithinAWeek(selectedDay)) return <div>7 day Weather forcast not available</div>;
+	const dayOftheWeek = selectedDay.day();
 	const time = moment().format('HH');
 	const timeOfDay = getTimeOfTheDay(time);
-	const temp = Math.round(weatherData.list[dayOftheWeek].temp[timeOfDay]);
-	const min = Math.round(weatherData.list[dayOftheWeek].temp.min);
-	const max = Math.round(weatherData.list[dayOftheWeek].temp.max);
+  const currentWeather = weatherData.list[dayOftheWeek];
+	const temp = round(currentWeather.temp[timeOfDay]);
+	const min = round(currentWeather.temp.min);
+	const max = round(currentWeather.temp.max);
 
 	return (
 		<Top
 			city={weatherData.city.name}
 			date={selectedDay.format('dddd MMMM DD YYYY')}
-			description={weatherData.list[dayOftheWeek].weather[0].description}
-			icon={getIconUrl(weatherData.list[dayOftheWeek].weather[0].id)}
+			description={currentWeather.weather[0].description}
+			icon={getIconUrl(currentWeather.weather[0].id)}
 			temp={temp}
 			tempMin={min}
 			tempMax={max}

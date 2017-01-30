@@ -16,7 +16,6 @@ const getCalendarRanges = (year, month) => {
 		const weeks = [];
 
 		// Generate weeks
-		// TODO: find out how to generate 6 weeks per month for each month range
 		monthRange.by('days', (moment) => {
 			let iWeek = moment.week();
 			if (weeks.indexOf(iWeek) < 0) return weeks.push(moment.week());

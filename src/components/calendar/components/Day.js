@@ -40,7 +40,7 @@ let Day = ({day, dayClasses, events, dispatch}) => {
 	return (
 		<time dateTime={day.format('YYYY-MM-DD')} className={timeClasses}>
   		<a href="#" onClick={(event) => selectDay(event, day, dispatch)}>
-				<span className="caldate">{day.format('DD')}</span>
+				<span className="caldate">{`${day.format('DD')} ${day.format('dddd')}`}</span>
 				{events.map((event) => (<button className={`eventMarker ${event.eventType}`} key={uuid.v4()} onClick={(event) => openEventList(event, dispatch)}>{event.eventType ? `${event.eventType || ''}: ${event.eventName || ''}` : ''}</button>))}
 			</a>
 		</time>
@@ -56,6 +56,3 @@ Day.propTypes = {
 }
 
 export default Day;
-
-
-// <img src="http://thenewcode.com/assets/svg/venn.svg" />
